@@ -6,9 +6,12 @@ import { SET_TODO } from "./action";
  * @typedef {import("./api").Todo} Todo
  */
 
-const initialState = {
-  todoList: /** @type {Todo[]} */ ([]),
-};
+/**
+ * @typedef {{ [id: Pick<Todo, 'id'>['id']]: Todo }} InitialState
+ */
+
+/** @type {InitialState} */
+const initialState = {};
 
 const handleTodoActions =
   /** @type {typeof handleActions<typeof initialState, Todo>} */ (handleActions);
@@ -16,10 +19,9 @@ const handleTodoActions =
 export default handleTodoActions(
   {
     [SET_TODO]: (state, { payload }) => {
-      const { todoList } = state;
       return {
         ...state,
-        todoList: [...todoList, payload]
+        [payload.id]: { ...payload },
       };
     },
   },
