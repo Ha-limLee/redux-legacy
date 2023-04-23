@@ -1,6 +1,6 @@
 // @ts-check
 import { handleActions } from "redux-actions";
-import { ADD_TODO } from "./action";
+import { SET_TODO } from "./action";
 
 /**
  * @typedef {import("./api").Todo} Todo
@@ -15,7 +15,7 @@ const handleTodoActions =
 
 export default handleTodoActions(
   {
-    [ADD_TODO]: (state, { payload }) => {
+    [SET_TODO]: (state, { payload }) => {
       const { todoList } = state;
       return {
         ...state,

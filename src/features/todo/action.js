@@ -5,5 +5,5 @@ import { createAction } from "redux-actions";
  * @typedef {import("./api").Todo} Todo
  */
 
-export const ADD_TODO = 'Todo/ADD_TODO';
-export const addTodo = /** @type {typeof createAction<Todo>} */ (createAction)(ADD_TODO);
+export const SET_TODO = 'Todo/ADD_TODO';
+export const setTodo = /** @type {typeof createAction<Todo>} */ (createAction)(SET_TODO);
