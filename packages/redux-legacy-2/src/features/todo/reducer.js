@@ -1,29 +1,67 @@
 // @ts-check
-import { handleActions } from "redux-actions";
+import { handleActions, handleAction } from "redux-actions";
 import { SET_TODO, REMOVE_TODO } from "./action";
+import { combineReducers } from "redux";
+
+/**
+ * @template S, P
+ * @typedef {|
+*  import("redux-actions").ReduxCompatibleReducer<S, P>
+* } ReduxCompatibleReducer
+*/
+
+/**
+ * @template Payload
+ * @typedef {import("redux-actions").Action<Payload>} Action
+ */
+
+/**
+ * @template S
+ * @typedef {import("./action").TodoReducerMap<S>} TodoReducerMap
+ */
 
 /**
  * @typedef {import("./api").Todo} Todo
  */
 
-/**
- * @typedef {{ [id: Pick<Todo, 'id'>['id']]: Todo }} InitialState
- */
-
-/**
- * @typedef {import("./action").ReducerMap<InitialState>} ReducerMap
- */
-
-/** @type {InitialState} */
+/** @type {{ [id: Pick<Todo, 'id'>['id']]: Todo }} */
 const initialState = {};
 
-const handleTodoActions =
-  /** @type {typeof handleActions<typeof initialState, Todo | Pick<Todo, 'id'>>} */ (handleActions);
+/**
+ * @template S
+ * @param {TodoReducerMap<S>} reducerMap 
+ * @param {S} initialState
+ */
+const handleTodoActions = (reducerMap, initialState) => {
+  const actionTypes = Object.keys(reducerMap);
+  const reducers = actionTypes.reduce((acc, actionType) => {
+    const reducer = reducerMap[actionType];
+    acc[actionType] = handleAction(actionType, reducer, initialState);
+    return acc;
+  }, {});
+  const ret = combineReducers(reducers);
 
-// TODO: Make function that returns reducer that accepts union payload type
+  /**
+   * @template T
+   * @typedef {T[keyof T]} ValueOf
+   */
+
+  /**
+   * @template A
+   * @typedef {A extends Action<infer P> ? P : never} ExtractPayload
+   */
+
+  /**
+   * @typedef {|
+   *  ExtractPayload<Parameters<ValueOf<typeof reducerMap>>[1]>
+   * } Payloads
+   */
+
+  return /** @type {ReduxCompatibleReducer<S, Payloads>} */(ret);
+};
+
 export default handleTodoActions(
-  /** @type {ReducerMap} */
-  ({
+  {
     [SET_TODO]: (state, { payload }) => {
       return {
         ...state,
@@ -36,6 +74,6 @@ export default handleTodoActions(
         ...state,
       }
     },
-  }),
+  },
   initialState,
 );

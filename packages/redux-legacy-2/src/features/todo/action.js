@@ -18,20 +18,9 @@ export const removeTodo =
   /** @type {typeof createAction<Pick<Todo, 'id'>>} */ (createAction)(REMOVE_TODO);
 
 /**
- * @template P
- * @typedef {P extends ActionFunction1<infer T, infer R> ? T : never} ExtractPayload1
- */
-
-/**
- * @typedef {{
- *  [SET_TODO]: ExtractPayload1<typeof setTodo>;
- *  [REMOVE_TODO]: ExtractPayload1<typeof removeTodo>;
- * }} PayloadMap
- */
-
-/**
  * @template T
  * @typedef {{
- *  [P in keyof PayloadMap]: (state: T, action: {type: string; payload: PayloadMap[P]}) => T
- * }} ReducerMap
- */
+*  [SET_TODO]: (state: T, action: ReturnType<typeof setTodo>) => T;
+*  [REMOVE_TODO]: (state: T, action: ReturnType<typeof removeTodo>) => T;
+* }} TodoReducerMap
+*/
