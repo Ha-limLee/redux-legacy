@@ -88,6 +88,46 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
 
+  packages/redux-legacy-3:
+    dependencies:
+      '@testing-library/jest-dom':
+        specifier: ^5.14.1
+        version: 5.16.5
+      '@testing-library/react':
+        specifier: ^13.0.0
+        version: 13.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^13.2.1
+        version: 13.5.0(@testing-library/dom@8.20.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      react-redux:
+        specifier: ^8.0.5
+        version: 8.0.5(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-scripts:
+        specifier: 5.0.1
+        version: 5.0.1(@babel/plugin-syntax-flow@7.21.4)(@babel/plugin-transform-react-jsx@7.21.0)(eslint@8.38.0)(react@18.2.0)(typescript@5.0.4)
+      redux:
+        specifier: ^4.2.1
+        version: 4.2.1
+      redux-actions:
+        specifier: ^3.0.0
+        version: 3.0.0
+      web-vitals:
+        specifier: ^2.1.0
+        version: 2.1.4
+    devDependencies:
+      '@types/react-redux':
+        specifier: ^7.1.25
+        version: 7.1.25
+      '@types/redux-actions':
+        specifier: ^2.6.2
+        version: 2.6.2
+
 packages:
 
   /@adobe/css-tools@4.2.0:
