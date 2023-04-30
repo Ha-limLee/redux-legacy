@@ -20,7 +20,7 @@ export const removeTodo =
 /**
  * @template T
  * @typedef {{
-*  [SET_TODO]: (state: T, action: ReturnType<typeof setTodo>) => T;
-*  [REMOVE_TODO]: (state: T, action: ReturnType<typeof removeTodo>) => T;
-* }} TodoReducerMap
-*/
+ *  [SET_TODO]: (state: T, action: ReturnType<typeof setTodo>) => T;
+ *  [REMOVE_TODO]: (state: T, action: ReturnType<typeof removeTodo>) => T;
+ * }} TodoReducerMap
+ */
