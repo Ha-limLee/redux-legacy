@@ -1,5 +1,5 @@
 // @ts-check
-import { handleActions, handleAction } from "redux-actions";
+import { handleAction } from "redux-actions";
 import { SET_TODO, REMOVE_TODO } from "./action";
 import { combineReducers } from "redux";
 
@@ -32,7 +32,7 @@ const initialState = {};
  * @param {TodoReducerMap<S>} reducerMap 
  * @param {S} initialState
  */
-const handleTodoActions = (reducerMap, initialState) => {
+const handleActions = (reducerMap, initialState) => {
   const actionTypes = Object.keys(reducerMap);
   const reducers = actionTypes.reduce((acc, actionType) => {
     const reducer = reducerMap[actionType];
@@ -60,7 +60,7 @@ const handleTodoActions = (reducerMap, initialState) => {
   return /** @type {ReduxCompatibleReducer<S, Payloads>} */(ret);
 };
 
-export default handleTodoActions(
+export default handleActions(
   {
     [SET_TODO]: (state, { payload }) => {
       return {
