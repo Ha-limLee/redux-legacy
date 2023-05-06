@@ -51,13 +51,15 @@ const handleActions = (reducerMap, initialState) => {
    */
 
   /**
-   * @template A
-   * @typedef {A extends Action<infer P> ? P : never} ExtractPayload
+   * @template F
+   * @typedef {|
+   *  F extends (state: S, action: {type: string; payload: infer P}) => S ? P : never
+   * } ExtractPayload
    */
 
   /**
    * @typedef {|
-   *  ExtractPayload<Parameters<ValueOf<typeof reducerMap>>[1]>
+   *  ExtractPayload<ValueOf<typeof reducerMap>>
    * } Payloads
    */
 
