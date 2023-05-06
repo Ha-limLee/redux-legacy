@@ -68,13 +68,13 @@ const handleActions = (reducerMap, initialState) => {
 
 export default handleActions(
   {
-    [SET_TODO]: (state, { payload }) => {
+    [SET_TODO]: (state, /** @type {{payload: Todo}} */ { payload }) => {
       return {
         ...state,
         [payload.id]: { ...payload },
       };
     },
-    [REMOVE_TODO]: (state, { payload }) => {
+    [REMOVE_TODO]: (state, /** @type {{payload: Pick<Todo, 'id'>}} */ { payload }) => {
       delete state[payload.id];
       return {
         ...state,
