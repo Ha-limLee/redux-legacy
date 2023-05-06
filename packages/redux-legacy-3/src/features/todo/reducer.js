@@ -29,7 +29,11 @@ const initialState = {};
 
 /**
  * @template S
- * @param {TodoReducerMap<S>} reducerMap 
+ * @template P
+ * @template {{
+ *  [K: string]: (state: S, action: {type: string; payload: P}) => S;
+ * }} M
+ * @param {M} reducerMap
  * @param {S} initialState
  */
 const handleActions = (reducerMap, initialState) => {
