@@ -1,6 +1,6 @@
 // @ts-check
 import { handleActions } from "../../app/actions";
-import { EDIT_USER, REMOVE_USER } from "./action";
+import { editUser, EDIT_USER, removeUser, REMOVE_USER } from "./action";
 
 /**
  * @typedef {Object} User
@@ -16,14 +16,15 @@ const initialState = {
 
 export default handleActions(
   {
-    [EDIT_USER]: (state
-      , /** @type {{payload: User}} */ { payload }) => {
+    [EDIT_USER]: (state,
+      /** @type {ReturnType<editUser>} */ { payload }) => {
       return {
         ...state,
         userName: payload.userName,
       }
     },
-    [REMOVE_USER]: (state, /** @type {{payload: Pick<User, 'userId'>}} */ { payload }) => {
+    [REMOVE_USER]: (state,
+      /** @type {ReturnType<removeUser>} */ { payload }) => {
       delete state[payload.userId];
       return {
         ...state,
